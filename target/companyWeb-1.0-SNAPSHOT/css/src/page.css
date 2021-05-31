@@ -1,0 +1,67 @@
+div.page{
+    width: 1200px;
+    margin: 0 auto;
+}
+div.page .title{
+    margin-top: 50px;
+    text-align: center;
+}
+div.page .subTitle{
+    overflow: hidden;
+    padding-top: 20px !important;
+    margin-bottom: 50px;
+}
+div.page img{
+    width: 100% !important;
+}
+div.page .content{
+    width: 100%;
+}
+div.page .subinformation{
+    box-shadow: 0 10px 18px #f6f6f6;
+    font-size: 0;
+    border: 1px solid #f1f1f1;
+    padding-right: 67px !important;
+    padding-left: 67px !important;
+    margin-top: 25px !important;
+    padding-bottom: 20px !important;
+    padding-top: 20px !important;
+    list-style: none;
+}
+div.page .subinformation .box{
+    width: 33%;
+    border-bottom: 1px solid #f1f1f1;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+div.page .subinformation .box::after{
+    content: "";
+    width: 1px;
+    height: 30px;
+    background: #f1f1f1;
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    margin-top: -15px;
+}
+div.page .subinformation .box p.content{
+    max-width: 80%;
+    margin: 0 auto;
+    color: #333;
+    line-height: 1;
+    font-size: 18px !important;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+div.page .subinformation .box p.name{
+    max-width: 80%;
+    margin: 0 auto;
+    color: #999;
+    line-height: 1;
+    font-size: 14px !important;
+    padding-bottom: 20px !important;
+}

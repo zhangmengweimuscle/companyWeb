@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!-- 登录页面 -->
+    <link rel="stylesheet" href="../utils/login.css" type="text/css" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../css/src/page.css" type="text/css" />
+    <link rel="stylesheet" href="../css/src/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="../utils/bootstrap-grid.min.css" rel="stylesheet">
+    <script typet="text/javascript" src="../js/src/jquery.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header"></div>
+        <script>$("#header").load("src/header.html")</script>
+        <div class="page">
+            <!-- 填充区域 -->
+        </div>
+        <div id="footer"></div>
+        <script>$("#footer").load("src/footer.html")</script>
+    </div>
+    <script typet="text/javascript" src="../js/page.js"></script>
+    <!-- 加载画面 -->
+    <script typet="text/javascript" src="../utils/loading.js"></script>
+
+    <!-- 登录页面 -->
+    <div class="ui-mask" id="mask" onselectstart="return false"></div>
+    <div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+        <div class="ui-dialog-title" id="dialogDrag" onselectstart="return false;">
+            登录通行证
+            <a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
+        </div>
+        <div class="ui-dialog-content">
+            <div class="ui-dialog-l40 ui-dialog-pt15">
+                <input class="ui-dialog-input ui-dialog-input-username" type="input" placeholder="用户名" id="username" />
+            </div>
+            <div class="ui-dialog-l40 ui-dialog-pt15">
+                <input class="ui-dialog-input ui-dialog-input-password" type="password" placeholder="密码"
+                    id="password" />
+            </div>
+            <div>
+                <a class="ui-dialog-submit" onclick="admin();">登录</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

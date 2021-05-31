@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+
+    <link rel="stylesheet" href="../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../css/src/admin.css" type="text/css" />
+    <link rel="stylesheet" href="../utils/kindeditor/themes/default/default.css">
+    <link rel="stylesheet" href="../utils/seo-tabs.css">
+
+    <script typet="text/javascript" src="../js/src/jquery.js"></script>
+    <script charset="utf-8" src="../utils/kindeditor/kindeditor-all-min.js"></script>
+    <script charset="utf-8" src="../utils/kindeditor/lang/zh-CN.js"></script>
+    <script charset="utf-8" src="../utils/seo-tabs.js"></script>
+</head>
+
+<body>
+    <script>
+        var editor = new Object();
+        KindEditor.ready(function (K) {
+            var options = {
+                allowFileManager: true,
+                allowImageRemote: false,
+                uploadJson: 'http://localhost:8080/news/img/addImgs.do',
+                afterUpload: function (url, data, name) {
+                    this.sync();
+                    //上传文件后执行的回调函数，必须为3个参数
+                    if (name == "image" || name == "multiimage") { //单个和批量上传图片时
+                        var img = new Image(); img.src = url;
+                        img.onload = function () { //图片必须加载完成才能获取尺寸
+                            if (img.width > 330) editor.html(editor.html().replace('<img src="' + url + '"', '<img src="' + url + '" width="330"'))
+                        }
+                    }
+
+                },
+                afterBlur: function () {
+                    this.sync();
+                },
+                filterMode: true,
+                cssData: 'body{font-size:20px}, .ke-content img {max-width: 300px;height:auto;}',
+                resizeType: 0,
+                items: [
+                    'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist',
+                    'indent', 'outdent', 'formatblock', 'bold', '|', 'image',
+                ]
+            };
+            editor.introduction = K.create('textarea[id="infocontent"]', options);
+            editor.culture = K.create('textarea[id="culcontent"]', options);
+            editor.news = K.create('textarea[id="newscontent"]', options);
+            editor.addnews = K.create('textarea[id="addnewscontent"]', options);
+            editor.examples = K.create('textarea[id="examcontent"]', options);
+            editor.addexamples = K.create('textarea[id="addexamcontent"]', options);
+        });
+    </script>
+
+
+    <div class="naviTab">
+        <div class="box">
+            <div class="information">修改企业信息</div>
+
+            <div class="order">管理报价申请</div>
+
+            <div class="introduction">修改企业简介</div>
+
+            <div class="carouselMap">修改企业文化</div>
+
+            <div class="news">管理新闻</div>
+
+            <div class="examples">管理工程案例</div>
+
+            <div class="links">管理友情链接</div>
+
+            <div class="back">退出登录</div>
+
+        </div>
+    </div>
+    <div class="workspace">
+        <div class="box">
+            <!-- 
+
+                修改企业信息
+             -->
+
+            <div class="information tab">
+                <div class="words">修改企业信息</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#location" data-tabtop="true" data-active="true">企业地址</a>
+                    <a href="#phone" data-tabtop="true">企业电话</a>
+                    <a href="#cover" data-tabtop="true">网站封面</a>
+                    <a href="#logo" data-tabtop="true">企业logo</a>
+                    <a href="#coverword" data-tabtop="true">封面字符动画</a>
+                    <div data-id="location" data-tabbox="true" data-active="true">
+                        <!-- 修改企业信息   企业地址 -->
+                        <input type="text" name="location">
+                    </div>
+                    <div data-id="phone" data-tabbox="true">
+                        <!-- 修改企业信息   企业电话 -->
+                        <input type="text" name="phone">
+                    </div>
+                    <div data-id="cover" data-tabbox="true">
+                        <!-- 修改企业信息   网站封面 -->
+                        <div class="carouselImg" name="cover"><input type="file" class="carouselImg" name="cover"></div>
+                    </div>
+                    <div data-id="logo" data-tabbox="true">
+                        <!-- 修改企业信息   企业logo -->
+                        <div class="carouselImg" name="logo"><input type="file" class="carouselImg" name="logo"></div>
+                    </div>
+                    <div data-id="coverword" data-tabbox="true">
+                        <!-- 修改企业信息   封面字符动画 -->
+                        <textarea name="coverWords" id="" cols="30" rows="10" style="margin-left: 20px;"></textarea>
+                    </div>
+                </div>
+                <div class="submit" id="informationSubmit">保存</div>
+            </div>
+            <!-- 
+
+                管理报价申请
+             -->
+            <div class="order tab">
+                <div class="words">管理报价申请</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#form" data-tabtop="true" data-active="true">管理报价申请</a>
+                    <div data-id="form" data-tabbox="true" data-active="true">
+                        <!-- 管理报价申请 -->
+                        <div>
+                            <div class="line tname">名字</div>
+                            <div class="line tphone">电话</div>
+                            <div class="line tlocation">地址</div>
+                            <div class="line tarea">住房面积</div>
+                        </div>
+                        <div class="formlist">
+                            <ul class="listul" data-name="listulForm">
+                                <!-- 填充区域 -->
+                            </ul>
+                        </div>
+                        <div style="display: flex;">
+                            <div style="display: flex;">
+                                <input type="text" class="line searchInput" data-name="searchFormInput">
+                                <div class="line searchDiv" data-name="searchFormDiv" data-id="Form">
+                                    <img src="../img/search.png" width="30px">
+                                </div>
+                            </div>
+                            <!-- 
+                                    分页按钮
+                                -->
+                            <div class="page" data-name="Form">
+                                <pag class="img">
+                                    <div data-id="first" class="page_first">
+                                        <img src="../img/page_first.png" width="30px" />
+                                    </div>
+                                    <div data-id="up" class="page_turning_left">
+                                        <img src="../img/page_turning_left.png" width="30px" />
+                                    </div>
+                                    <div class="number">
+                                        <input type="number" data-id="page" value="" />
+                                    </div>
+                                    <div data-id="next" class="page_turning_right">
+                                        <img src="../img/page_turning_right.png" width="30px" />
+                                    </div>
+                                    <div data-id="last" class="page_last">
+                                        <img src="../img/page_last.png" width="30px" />
+                                    </div>
+                                </pag>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit" id="formSubmit">删除</div>
+            </div>
+            <!-- 
+
+                修改企业简介
+             -->
+            <div class="introduction tab">
+                <div class="words">修改企业简介</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#infocover" data-tabtop="true" data-active="true">首页简介图片</a>
+                    <a href="#info" data-tabtop="true">首页简介介绍</a>
+                    <a href="#introduction" data-tabtop="true">介绍页</a>
+                    <div data-id="infocover" data-tabbox="true" data-active="true">
+                        <!-- 修改企业简介   首页简介图片 -->
+                        <div data-name="infocover" class="carouselImg"><input type="file" class="carouselImg"
+                                name="infocover"></div>
+                    </div>
+                    <div data-id="info" data-tabbox="true">
+                        <!-- 修改企业简介   首页简介介绍  -->
+                        <textarea name="info" id="" cols="30" rows="10" style="margin-left: 20px;"></textarea>
+                    </div>
+                    <div data-id="introduction" data-tabbox="true">
+                        <!-- 修改企业简介   介绍页  -->
+                        <textarea id="infocontent" style="width:100%;height:330px;"></textarea>
+                    </div>
+                </div>
+                <div class="submit" id="introductionSubmit">保存</div>
+            </div>
+            <!-- 
+
+                修改企业文化
+             -->
+            <div class="carouselMap tab" name="carouselMap">
+                <div class="words">修改企业文化</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#carouselmap" data-tabtop="true" data-active="true">首页轮播图</a>
+                    <a href="#culture" data-tabtop="true">介绍页</a>
+                    <div data-id="carouselmap" data-tabbox="true" data-active="true">
+                        <!-- 修改企业文化   首页轮播图 -->
+                        <div class="carouselImg" data-name="carouselmap1"><input type="file" class="carouselImg"></div>
+                        <div class="carouselImg" data-name="carouselmap2"><input type="file" class="carouselImg"></div>
+                        <div class="carouselImg" data-name="carouselmap3"><input type="file" class="carouselImg"></div>
+                    </div>
+                    <div data-id="culture" data-tabbox="true">
+                        <!-- 修改企业文化   介绍页  -->
+                        <textarea id="culcontent" style="width:100%;height:330px;"></textarea>
+                    </div>
+                </div>
+                <div class="submit" id="cultureSubmit">保存</div>
+            </div>
+            <!-- 
+
+                管理新闻
+             -->
+            <div class="news tab">
+                <div class="words">管理新闻</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#newslist" data-tabtop="true" data-active="true" data-value="newslist">新闻列表</a>
+                    <a href="#addnews" data-tabtop="true" data-value="addnews">添加新闻</a>
+                    <a href="#news" data-tabtop="true" style="pointer-events: none;" data-value="news">修改新闻</a>
+                    <div data-id="newslist" data-tabbox="true" data-active="true">
+                        <!-- 管理新闻   新闻列表 -->
+                        <div>
+                            <div class="line ndate">日期</div>
+                            <div class="line ntitle">标题</div>
+                        </div>
+                        <div class="formlist">
+                            <ul class="listul" data-name="listulNews">
+                                <!-- 填充区域 -->
+                            </ul>
+                        </div>
+                        <div style="display: flex;">
+                            <div style="display: flex;">
+                                <input type="text" class="line searchInput" data-name="searchNewsInput">
+                                <div class="line searchDiv" data-name="searchNewsDiv" data-id="News">
+                                    <img src="../img/search.png" width="30px">
+                                </div>
+                            </div>
+                            <!-- 
+                                    分页按钮
+                                -->
+                            <div class="page" data-name="News">
+                                <pag class="img">
+                                    <div data-id="first" class="page_first">
+                                        <img src="../img/page_first.png" width="30px" />
+                                    </div>
+                                    <div data-id="up" class="page_turning_left">
+                                        <img src="../img/page_turning_left.png" width="30px" />
+                                    </div>
+                                    <div class="number">
+                                        <input type="number" data-id="page" value="" />
+                                    </div>
+                                    <div data-id="next" class="page_turning_right">
+                                        <img src="../img/page_turning_right.png" width="30px" />
+                                    </div>
+                                    <div data-id="last" class="page_last">
+                                        <img src="../img/page_last.png" width="30px" />
+                                    </div>
+                                </pag>
+
+                            </div>
+                        </div>
+                    </div>
+                        <!-- 管理新闻   添加新闻  -->
+                    <div data-id="addnews" data-tabbox="true">
+                        <div style="display: flex;width: 100%;">
+                            <textarea id="addnewscontent" style="width:65%;height:330px;"></textarea>
+                            <div style="height: 330px;width: 35%;margin-left: 20px;">
+                                <span>标题:</span>
+                                <input type="text" id="addnewstitle"><br />
+                                <p>封面:</p>
+                                <div data-name="addnewscover" class="carouselImg" >
+                                    <input type="file" class="carouselImg" name="addnewscover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="news" data-tabbox="true">
+                        <!-- 管理新闻   修改新闻  -->
+                        <div style="display: flex;width: 100%;">
+                            <textarea id="newscontent" style="width:65%;height:330px;"></textarea>
+                            <div style="height: 330px;width: 35%;margin-left: 20px;">
+                                <p>标题:</p>
+                                <input type="text" id="newstitle" >
+                                <p>封面:</p>
+                                <div data-name="newscover" class="carouselImg">
+                                    <input type="file" class="carouselImg" name="newscover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit" style="right: 350px;" id="deleteNews">删除</div>
+                <div class="submit" id="submitNews">保存</div>
+            </div>
+            <!-- 
+
+                管理工程案例
+             -->
+            <div class="examples tab">
+                <div class="words">管理工程案例</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#exampleslist" data-tabtop="true" data-active="true" data-value="exampleslist">工程案例列表</a>
+                    <a href="#addexamples" data-tabtop="true" data-value="addexamples"> 添加工程案例</a>
+                    <a href="#examples" data-tabtop="true" data-value="examples" style="pointer-events: none;">修改工程案例</a>
+                    <div data-id="exampleslist" data-tabbox="true" data-active="true">
+                        <!-- 管理工程案例   工程案例列表 -->
+                        <div>
+                            <div class="line etitle">名称</div>
+                            <div class="line elocation">地址</div>
+                        </div>
+                        <div class="formlist">
+                            <ul class="listul" data-name="listulExamples">
+                                <!-- 填充区域 -->
+                            </ul>
+                        </div>
+                        <div style="display: flex;">
+                            <div style="display: flex;">
+                                <input type="text" class="line searchInput" data-name="searchExamplesInput">
+                                <div class="line searchDiv" data-name="searchExamplesDiv" data-id="Examples">
+                                    <img src="../img/search.png" width="30px">
+                                </div>
+                            </div>
+                            <!-- 
+                                    分页按钮
+                                -->
+                            <div class="page" data-name="Examples">
+                                <pag class="img">
+                                    <div data-id="first" class="page_first">
+                                        <img src="../img/page_first.png" width="30px" />
+                                    </div>
+                                    <div data-id="up" class="page_turning_left">
+                                        <img src="../img/page_turning_left.png" width="30px" />
+                                    </div>
+                                    <div class="number">
+                                        <input type="number" data-id="page" value="" />
+                                    </div>
+                                    <div data-id="next" class="page_turning_right">
+                                        <img src="../img/page_turning_right.png" width="30px" />
+                                    </div>
+                                    <div data-id="last" class="page_last">
+                                        <img src="../img/page_last.png" width="30px" />
+                                    </div>
+                                </pag>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 管理工程案例   添加工程案例 -->
+                    <div data-id="addexamples" data-tabbox="true">
+                        <div style="display: flex;width: 100%;">
+                            <textarea id="addexamcontent" style="width:65%;height:330px;"></textarea>
+                            <div style="height: 330px;width: 35%;margin-left: 20px;">
+                                <span>标题:</span>
+                                <input type="text" id="addexamplestitle"><br />
+                                <span>户型:</span>
+                                <!-- <input type="text" id="addexamplestype"><br /> -->
+                                <select id="addexamplestype">
+                                    <option value="null">请选择分类</option>
+                                    <option value="二居">二居</option>
+                                    <option value="三居">三居</option>
+                                    <option value="别墅">别墅</option>
+                                    <option value="复式">复式</option>
+                                    <option value="自建">自建</option>
+                                </select><br />
+                                <span>面积:</span>
+                                <input type="text" id="addexamplesarea"><br />
+                                <span>地址:</span>
+                                <input type="text" id="addexampleslocation"><br />
+                                <span>封面:</span>
+                                <div data-name="addexamplescover" class="carouselImg" >
+                                    <input type="file" class="carouselImg" name="addexamplescover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="examples" data-tabbox="true">
+                        <!-- 管理工程案例   修改工程案例 -->
+                        <div style="display: flex;width: 100%;">
+                            <textarea id="examcontent" style="width:65%;height:330px;"></textarea>
+                            <div style="height: 330px;width: 35%;margin-left: 20px;">
+                                <span>标题:</span>
+                                <input type="text" id="examplestitle"><br />
+                                <span>户型:</span>
+                                <!-- <input type="text" id="examplestype"><br /> -->
+                                <select id="examplestype">
+                                    <option value="null">请选择分类</option>
+                                    <option value="二居">二居</option>
+                                    <option value="三居">三居</option>
+                                    <option value="别墅">别墅</option>
+                                    <option value="复式">复式</option>
+                                    <option value="自建">自建</option>
+                                </select><br />
+                                <span>面积:</span>
+                                <input type="text" id="examplesarea"><br />
+                                <span>地址:</span>
+                                <input type="text" id="exampleslocation"><br />
+                                <span>封面:</span>
+                                <div data-name="examplescover" class="carouselImg" >
+                                    <input type="file" class="carouselImg" name="examplescover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="submit" style="right: 350px;" id="deleteExamples">删除</div>
+                <div class="submit" id="submitExamples">保存</div>
+            </div>
+            <!-- 
+                友情链接
+             -->
+            <div class="links tab">
+                <div class="words">管理友情链接</div>
+                <div data-seo-tabs="true" data-hashable="true">
+                    <a href="#linkslist" data-tabtop="true" data-active="true" data-value="linkslist">链接列表</a>
+                    <a href="#addlinks" data-tabtop="true" data-value="addlinks">添加链接</a>
+                    <div data-id="linkslist" data-tabbox="true" data-active="true">
+                        <!-- 管理友情链接   链接列表 -->
+                        <div>
+                            <div class="line lname">名称</div>
+                            <div class="line lurl">链接</div>
+                        </div>
+                        <div class="linkslist">
+                            <ul class="listul" data-name="listulLinks">
+                                <!-- 填充区域 -->
+                            </ul>
+                            <!-- 搜索 -->
+                            <div style="display: flex;">
+                                <div style="display: flex;">
+                                    <input type="text" class="line searchInput" data-name="searchLinksInput">
+                                    <div class="line searchDiv" data-name="searchLinksDiv" data-id="Links">
+                                        <img src="../img/search.png" width="30px">
+                                    </div>
+                                </div>
+                                <!-- 
+                                        分页按钮
+                                    -->
+                                <div class="page" data-name="Links">
+                                    <pag class="img">
+                                        <div data-id="first" class="page_first">
+                                            <img src="../img/page_first.png" width="30px" />
+                                        </div>
+                                        <div data-id="up" class="page_turning_left">
+                                            <img src="../img/page_turning_left.png" width="30px" />
+                                        </div>
+                                        <div class="number">
+                                            <input type="number" data-id="page" value="" />
+                                        </div>
+                                        <div data-id="next" class="page_turning_right">
+                                            <img src="../img/page_turning_right.png" width="30px" />
+                                        </div>
+                                        <div data-id="last" class="page_last">
+                                            <img src="../img/page_last.png" width="30px" />
+                                        </div>
+                                    </pag>
+    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-id="addlinks" data-tabbox="true">
+                        <span>名称：</span>
+                        <input type="text" id="addlinksname">
+                        <br>
+                        <span>链接：</span>
+                        <input type="text" id="addlinksurl">
+                    </div>
+                </div>
+                <div class="submit" id="deleteLinks" style="right: 350px;">删除</div>
+                <div class="submit" id="submitLinks">保存</div>
+            </div>
+
+        </div>
+    </div>
+
+    <script typet="text/javascript" src="../utils/loading.js"></script>
+    <!-- <script typet="text/javascript" src="../js/main.js"></script> -->
+    <script typet="text/javascript" src="../js/src/admin.js"></script>
+</body>
+
+</html>

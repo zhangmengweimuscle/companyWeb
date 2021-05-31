@@ -1,0 +1,146 @@
+div.title{
+    text-align: center;
+}
+div.content{
+    overflow: hidden;
+    width: 1200px;
+    margin: 0 auto;
+}
+div.content .filter{
+    border: 1px solid #edecec;
+    border-bottom: 1px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+div.content .filter >ul{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+div.content .filter >ul >li{
+    min-height: 49px;
+    margin: 0;
+    border-bottom: 1px solid #edecec;
+    text-align: center;
+    line-height: 48px;
+    position: relative;
+    overflow: hidden;
+}
+div.content .filter >ul >li .title{
+    position: absolute;
+    height: inherit;
+    width: 80px;
+    background: #fafafa;
+}
+div.content .filter >ul >li .content{
+    position: absolute;
+    overflow: hidden;
+    left: 80px;
+    width: 960px;
+    color: #333;
+    padding-bottom: 13px;
+    padding-left: 10px;
+}
+div.content .filter >ul >li .content span{
+    display: block;
+    padding: 2px 8px;
+    margin-left: 10px;
+    margin-top: 13px;
+    float: left;
+    line-height: 1.5;
+}
+div.content .filter >ul >li .content >span >a{
+    color: inherit;
+    outline: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+div.content .filter >ul >li .content span.active{
+    background: #e74c3c;
+    color: #fff;
+}
+div.content .examples{
+    margin-top: 20px !important;
+    width: 1220px;
+    margin-left: -14px;
+    padding-left: 3px;
+    padding-bottom: 7px;
+}
+div.content .examples .box{
+    padding: 10px;
+    float: left;
+    width: 283px;
+    height: 338px;
+    margin: auto;
+    border: 1px solid #edecec;
+    background: #f7f7f7;
+    transition: all .5s;
+}
+div.content .examples .box .img{
+    height: 225px;
+    width: 100%;
+    overflow: hidden;
+    background-image: none;
+    position: relative;
+    background-color: #fff;
+}
+div.content .examples .box .detail{
+    width: 100%;
+    height: 80px;
+    padding: 15px 10px;
+}
+div.content .examples .box .detail .location{
+    float: left;
+    font-size: 16px;
+    color: #212628;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+div.content .examples .box .detail .right{
+    float: right;
+}
+div.content .examples .box .detail .right .type{
+    margin-right: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+div.content .examples .box .detail .right .area{
+    margin-right: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+/*
+    分页按钮样式
+*/
+.page{
+    width: 100%;
+    margin: 0 auto;
+}
+.page .img{
+    display: flex;
+    justify-content: flex-start;
+    width: 300px;
+}
+.page .img .page_first,.page .img .page_turning_left,.page .img .page_turning_right,.page .img .page_last{
+    cursor: pointer;
+}
+.page input[type="number"]{
+		 
+    font-size: 23px;
+    width: 30px;
+    height: 26px;
+}
+.page .number{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}

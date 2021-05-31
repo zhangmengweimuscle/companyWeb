@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="dao.IntroductionMapper" >
+  <resultMap id="BaseResultMap" type="entity.Introduction" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="infocover" property="infocover" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="cover" property="cover" jdbcType="VARCHAR" />
+    <result column="coverword" property="coverword" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="entity.IntroductionWithBLOBs" extends="BaseResultMap" >
+    <result column="introduction" property="introduction" jdbcType="LONGVARCHAR" />
+    <result column="culture" property="culture" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, location, phone, infocover, info, logo, cover, coverword
+  </sql>
+  <sql id="Blob_Column_List" >
+    introduction, culture
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="entity.IntroductionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from introduction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="entity.IntroductionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from introduction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="int" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from introduction
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="int" >
+    delete from introduction
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="entity.IntroductionExample" >
+    delete from introduction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="entity.IntroductionWithBLOBs" >
+    insert into introduction (id, location, phone, 
+      infocover, info, logo, 
+      cover, coverword, introduction, 
+      culture)
+    values (#{id,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{infocover,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{logo,jdbcType=VARCHAR}, 
+      #{cover,jdbcType=VARCHAR}, #{coverword,jdbcType=VARCHAR}, #{introduction,jdbcType=LONGVARCHAR}, 
+      #{culture,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="entity.IntroductionWithBLOBs" >
+    insert into introduction
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      id,
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="infocover != null" >
+        infocover,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="cover != null" >
+        cover,
+      </if>
+      <if test="coverword != null" >
+        coverword,
+      </if>
+      <if test="introduction != null" >
+        introduction,
+      </if>
+      <if test="culture != null" >
+        culture,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="infocover != null" >
+        #{infocover,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="coverword != null" >
+        #{coverword,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="culture != null" >
+        #{culture,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="entity.IntroductionExample" resultType="java.lang.Integer" >
+    select count(*) from introduction
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update introduction
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.location != null" >
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infocover != null" >
+        infocover = #{record.infocover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.info != null" >
+        info = #{record.info,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cover != null" >
+        cover = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coverword != null" >
+        coverword = #{record.coverword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.introduction != null" >
+        introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.culture != null" >
+        culture = #{record.culture,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update introduction
+    set id = #{record.id,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      infocover = #{record.infocover,jdbcType=VARCHAR},
+      info = #{record.info,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      coverword = #{record.coverword,jdbcType=VARCHAR},
+      introduction = #{record.introduction,jdbcType=LONGVARCHAR},
+      culture = #{record.culture,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update introduction
+    set id = #{record.id,jdbcType=INTEGER},
+      location = #{record.location,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      infocover = #{record.infocover,jdbcType=VARCHAR},
+      info = #{record.info,jdbcType=VARCHAR},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      coverword = #{record.coverword,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="entity.IntroductionWithBLOBs" >
+    update introduction
+    <set >
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="infocover != null" >
+        infocover = #{infocover,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="cover != null" >
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="coverword != null" >
+        coverword = #{coverword,jdbcType=VARCHAR},
+      </if>
+      <if test="introduction != null" >
+        introduction = #{introduction,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="culture != null" >
+        culture = #{culture,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="entity.IntroductionWithBLOBs" >
+    update introduction
+    set location = #{location,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      infocover = #{infocover,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      coverword = #{coverword,jdbcType=VARCHAR},
+      introduction = #{introduction,jdbcType=LONGVARCHAR},
+      culture = #{culture,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="entity.Introduction" >
+    update introduction
+    set location = #{location,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      infocover = #{infocover,jdbcType=VARCHAR},
+      info = #{info,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      coverword = #{coverword,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

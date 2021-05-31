@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <!-- 登录页面 -->
+    <link rel="stylesheet" href="../utils/login.css" type="text/css" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" />
+    <link rel="stylesheet" href="../css/src/examples.css" type="text/css" />
+    <link rel="stylesheet" href="../css/src/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" />
+    <link href="../utils/bootstrap-grid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.bootstrapmb.com/fontawesome/all/css/all.min.css">
+
+    <script typet="text/javascript" src="../js/src/jquery.js"></script>
+    <script typet="text/javascript" src="../js/main.js"></script>
+    <script typet="text/javascript" src="../js/src/examples.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <div id="header"></div>
+    <script>$("#header").load("src/header.html");</script>
+    <div class="title"></div>
+    <div class="content">
+        <div class="filter">
+            <ul>
+                <li class="anli_pro">
+                    <div class="title">案例户型</div>
+                    <div class="content">
+                        <span class="active" id="allType">全部</a></span>
+                        <span class="" id="two">二居</a></span>
+                        <span class="" id="three">三居</a></span>
+                        <span class="" id="villa">别墅</a></span>
+                        <span class="" id="duplex">复式</a></span>
+                        <span class="" id="selfBuild">自建</a></span>
+                    </div>
+                </li>
+                <li class="anli_pro">
+                    <div class="title">房屋面积</div>
+                    <div class="content">
+                        <span class="active" id="allArea">全部</a></span>
+                        <span class="" id="small">100㎡以下</a></span>
+                        <span class="" id="middle">101-150㎡</a></span>
+                        <span class="" id="large">150㎡以上</a></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="box" style="min-height: 565px;">
+            <div class="demo">
+                <div class="container">
+                    <div class="row">
+                        <!--填充区域  -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 
+        分页按钮
+        -->
+        <div style="width: 150px; margin: 0 auto;">
+            <div class="page" data-name="Examples">
+                <pag class="img">
+                    <div data-id="first" class="page_first">
+                        <img src="../img/page_first.png" width="30px" />
+                    </div>
+                    <div data-id="up" class="page_turning_left">
+                        <img src="../img/page_turning_left.png" width="30px" />
+                    </div>
+                    <div class="number">
+                        <input type="number" data-id="page" value="" />
+                    </div>
+                    <div data-id="next" class="page_turning_right">
+                        <img src="../img/page_turning_right.png" width="30px" />
+                    </div>
+                    <div data-id="last" class="page_last">
+                        <img src="../img/page_last.png" width="30px" />
+                    </div>
+                </pag>
+    
+            </div>
+        </div>
+    </div>
+    <div id="footer"></div>
+    <script>$("#footer").load("src/footer.html");</script>
+    </div>
+
+    <!-- 加载画面 -->
+    <script typet="text/javascript" src="../utils/loading.js"></script>
+
+     <!-- 登录页面 -->
+     <div class="ui-mask" id="mask" onselectstart="return false"></div>
+     <div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+         <div class="ui-dialog-title" id="dialogDrag" onselectstart="return false;">
+             登录通行证
+             <a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
+         </div>
+         <div class="ui-dialog-content">
+             <div class="ui-dialog-l40 ui-dialog-pt15">
+                 <input class="ui-dialog-input ui-dialog-input-username" type="input" placeholder="用户名" id="username" />
+             </div>
+             <div class="ui-dialog-l40 ui-dialog-pt15">
+                 <input class="ui-dialog-input ui-dialog-input-password" type="password" placeholder="密码" id="password" />
+             </div>
+             <div>
+                 <a class="ui-dialog-submit" onclick="admin();">登录</a>
+             </div>
+         </div>
+     </div>
+</body>
+
+</html>

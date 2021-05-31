@@ -1,0 +1,57 @@
+/* bottomBar-style 底部信息栏*/
+div.bottomBar{
+    background-size: cover;
+    background-color: #000;
+    margin-top: 40px;
+    padding-top: 40px;
+    min-width: 1200px;
+    position: relative;
+}
+div.bottomBar .header{
+    width: 1200px;
+    margin: 0 auto;
+}
+div.bottomBar .header .clearFix{
+    overflow: hidden;
+}
+div.bottomBar .header .clearFix >dl{
+    float: left;
+    width: 130px;
+    margin: 30px 70px 0 0;
+}
+div.bottomBar .header .clearFix >dl >dt{
+    color: #fff;
+}
+div.bottomBar .header .clearFix >dl >dd{
+    margin-top: 1em;
+    line-height: 2;
+}
+div.bottomBar .header .clearFix >dl >dd >ul{
+    list-style: none;
+}
+div.bottomBar .header .clearFix >dl >dd >ul >li{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+div.bottomBar .header .clearFix >dl >dd >ul >li >a{
+    display: inline-block;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #eee;
+    outline: none;
+    text-decoration: none;
+}
+div.bottomBar .footer{
+    line-height: 2;
+    margin-top: 40px !important;
+    padding-top: 25px !important;
+    border-top: 1px solid #797d80;
+    height: 80px;
+}
+#map{
+    transform: scale(0.85);
+    margin: -50px 0;
+}
+#map::-webkit-scrollbar{
+    display: none;
+}

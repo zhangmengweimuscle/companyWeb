@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="../css/src/footer.css">
+<script src="../js/src/footer.js"></script>
+<div class="bottomBar">
+    <div class="header">
+        <div class="clearFix">
+            <dl>
+                <dt>关于我们</dt>
+                <dd>
+                    <ul>
+                        <li><a href="page.html?introduction">企业简介</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="page.html?culture">企业文化</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="javascript:showDialog()">网站管理</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt>装修服务</dt>
+                <dd>
+                    <ul>
+                        <li><a href="index.html#service">简单报价</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="examples.html">工程案例</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt>新闻资讯</dt>
+                <dd>
+                    <ul>
+                        <li><a href="news.html">新闻资讯</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <dt>企业信息</dt>
+                <dd>
+                    <ul>
+                        <li><a href="" style="pointer-events:none;" id="footerPhone"></a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="" style="pointer-events: none;" id="footerLocation"></a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl>
+                <div id="map" style="width: 300px; height: 300px;"></div>
+                <script>
+                 document.getElementById("map").innerHTML = '<object type="text/html" data="src/baiduMap.html" width="100%" height="100%"></object>';
+                </script>
+            </dl>
+        </div>
+    </div>
+    <div class="footer"></div>
+</div>

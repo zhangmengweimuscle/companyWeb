@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    &lt;!&ndash;    输出日志文件&ndash;&gt;-->
+<!--    <settings>-->
+<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+<!--    </settings>-->
+    <!-- com.github.pagehelper为PageHelper类所在包名 -->
+    <typeAliases>
+        <!--        实体类所在的包名-->
+        <package name="entity"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+
+    <mappers>
+        <!--        sql mapper（sql映射文件）的位置，dao下的所有mapper文件都能扫描到-->
+        <package name="dao"/>
+    </mappers>
+
+
+
+</configuration>
+

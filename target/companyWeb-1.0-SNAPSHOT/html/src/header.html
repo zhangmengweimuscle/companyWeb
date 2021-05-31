@@ -1,0 +1,68 @@
+<!-- 头部页面 -->
+<link rel="stylesheet" href="../css/src/header.css">
+<link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" >
+<link rel="stylesheet" href="../css/src/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" >
+<div class="topBar">
+    <i class="fa fa-map-marker" style="float: left !important;margin-top: 2px;margin-right: 5px;"></i>
+    <div class="left">地点：<span id="headerlocation"></span></div>
+    <div class="right">
+        <i class="fa fa-volume-control-phone" style="float: left !important;margin-top: 2px;margin-right: 5px;"></i>
+        <span>联系电话：<span id="headerphone"></span></span>
+    </div>
+</div>
+
+<nav>
+    <div class="menu-btn">
+        <div class="line line__1"></div>
+        <div class="line line__2"></div>
+        <div class="line line__3"></div>
+    </div>
+
+    <div class="sub-menu-btn">
+        <div class="line line__1"></div>
+        <div class="line line__2"></div>
+    </div>
+
+    <ul class="nav-links">
+        <a href="index.html#header">
+            <li class="link">首页</li>
+        </a>
+        <li class="link">
+            <a href="#">企业信息</a>
+            <ol>
+                <a href="page.html?introduction">
+                    <li>企业简介</li>
+                </a>
+                <a href="page.html?culture">
+                    <li>企业文化</li>
+                </a>
+            </ol>
+        </li>
+        <a href="news.html">
+            <li class="link">新闻资讯</li>
+        </a>
+        <a href="examples.html">
+            <li class="link">工程案例</li>
+        </a>
+        <a href="index.html#links">
+            <li class="link">友情链接</li>
+        </a>
+        <li class="link">
+            <a href="#">联系我们</a>
+            <ol>
+                <li style="cursor: default;">
+                    <a target="_blank" style="pointer-events: none;">
+                        <i class="fa fa-location-arrow"></i><span data-id="headerlocation"></span>
+                    </a>
+                </li>
+                <li style="cursor: default;">
+                    <a target="_blank" style="pointer-events: none;">
+                        <i class="fa fa-mobile"></i><span data-id="headerphone"></span>
+                    </a>
+                </li>
+            </ol>
+        </li>
+    </ul>
+</nav>
+
+<script typet="text/javascript" src="../js/src/header.js"></script>
